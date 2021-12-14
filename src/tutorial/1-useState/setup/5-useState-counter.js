@@ -2,34 +2,56 @@ import React, { useState } from 'react';
 
 const UseStateCounter = () => {
 
-  const [counter,changeCounter] = useState(0);
+  const [counter,setCounter] = useState(0);
 
   //Handler for Increase value
-  const btnIncrease = ()=>{
+  /* const btnIncrease = ()=>{
     changeCounter(counter+1);
   }
-
+ */
   //Handler for Decrease value
-  const btnDecrease = ()=>{
+ /*  const btnDecrease = ()=>{
         changeCounter(counter-1);
-  }
+  } */
   
   //Handler for Reseting value
   const btnReset = ()=>{
-    changeCounter(0);
-  }
+      setCounter(0);
   
+  }
+
+
+  const complexIncrease = () => {
+
+    setTimeout(()=>{
+      setCounter((prevState)=>{
+        return prevState+1;
+      })
+    },2000);
+
+  }
+ 
   
   return(
     <>
     <section style={{margin:'4rem 0'}}>
       <h1>Regular Counter</h1>
       <h1>{counter}</h1>
-      <button className='btn' onClick={btnIncrease}>Increse</button>
-      <button className='btn'onClick={btnDecrease}>Decrease</button>
+      <button className='btn' onClick={()=>setCounter(counter+1)}>Increse</button>
+      <button className='btn'o onClick={()=>setCounter(counter-1)}>Decrease</button>
       <button className='btn' onClick={btnReset}>Reset</button>
-
     </section>
+
+{/*     Complex Counter 
+ */}
+
+    <section style={{margin:'4rem 0'}}>
+      <h1>Complex Counter</h1>
+      <h1>{counter}</h1>
+      <button className='btn' onClick={complexIncrease}>Increse</button>
+      
+    </section>
+
     </>
   )
 };
