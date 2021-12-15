@@ -1,42 +1,30 @@
 import React,{useState,useEffect} from 'react'
 
 
-
 const DogImage = () => {
 
     const [dogImage,setDogImage]=useState(null);
-    const [advice, setAdvice] = useState("")
 
-
- 
-
-    useEffect(()=>{
-        const url = "https://api.adviceslip.com/advice";
-
-        const fetchData = async()=>{
+    const fetchData = async()=>{
         try{
-            const response = await fetch(url);
+            const response = await fetch([]);
             const json = await response.json();
             console.log(json);
-            setAdvice(json.slip.advice);
-
         }catch(error){
             console.log("error",error);
         }
-    };
-
-    fetchData();
- },[]);
+    }
 
 
+    useEffect(()=>{
+        fetch("https://dog.ceo/api/breeds/image/random/3")
+        .then(response=>response.json())
+        .then(data=>setDogImage(data.message))
+    },[])
     return (
         <div>
-            <div style={{margin:'0 auto',height:'0 auto',display:'flex',width:'0 auto',textAlign:'center',background:'red',marginBottom:'5px'}}>
-                    <p style={{fontSize:'30px'}}>{advice}</p>
-            </div>
-            <div style={{margin:'0 auto',height:'0 auto',display:'flex',width:'0 auto',textAlign:'center',background:'green'}}>
-                    <p style={{fontSize:'30px'}}>{advice}</p>
-            </div>
+            {dogImage && dogImage.map((dog) => <img className='product' width={"200px"} height={"200px"} src={dog}></img>)}
+
         </div>
     )
 }
