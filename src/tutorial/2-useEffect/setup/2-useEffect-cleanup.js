@@ -3,29 +3,28 @@ import React, { useState, useEffect } from 'react';
 // cleanup function
 // second argument
 
-const UseEffectCleanup = (props) => {
+const UseEffectCleanup = () => {
 
-  const [loading,setLoading] = useState(true);
+  //const [loading,setLoading] = useState(true);
   const [size,setSize] = useState(window.screen.width);
 
   const actualwidth =()=>{
-    console.log(window.innerWidth);
           setSize(window.innerWidth);
 
   }
 
   useEffect(()=>{
-      const mainSize = window.addEventListener("resize",actualwidth);
+      window.addEventListener("resize",actualwidth);
       return()=>{
-        window.removeEventListener("resize",actualwidth);
+      window.removeEventListener("resize",actualwidth);
       }
-  },[size]);
+  },[]);
 
   return (
     <>
-    <div className='container'>
-      <p>Actual size of windows is </p>
-      <h1>{size} px</h1>
+    <div style={{marginTop:'2rem'}}>
+      <h1>Wondow </h1>
+      <h2>Size : {size} px</h2>
     </div>
     
     </>

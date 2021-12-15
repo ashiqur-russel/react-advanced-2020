@@ -1,7 +1,17 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
+import Size from '../../2-useEffect/setup/2-useEffect-cleanup'
+
 
 const ShowHide = () => {
-  return <h2>show/hide</h2>;
+
+  const [show,setShow] = useState(false);
+
+  return (
+    <>
+    <button className='btn' onClick={()=>setShow(!show)}>Show/Hide</button>
+    {show && <Size/>}
+    </>
+  )
 };
 
 export default ShowHide;
