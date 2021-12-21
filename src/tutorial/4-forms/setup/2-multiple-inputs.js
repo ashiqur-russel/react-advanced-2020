@@ -7,36 +7,39 @@ import React, { useState } from 'react';
 // dynamic object keys
 
 const ControlledInputs = () => {
-  const [firstName, setFirstName] = useState('');
-  const [email, setEmail] = useState('');
+  //const [firstName, setFirstName] = useState('');
+  //const [email, setEmail] = useState('');
+  const [data,setData]= useState({firstName:'',email:''});
   const [people, setPeople] = useState([]);
+  const handleChange = (e)=>{
+    const name = e.target.name;
+    const value = e.target.value;
+    setData ({...data,[name]:value});
+  }
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    if (firstName && email) {
-      const person = { id: new Date().getTime().toString(), firstName, email };
-      console.log(person);
-      setPeople((people) => {
-        return [...people, person];
-      });
-      setFirstName('');
-      setEmail('');
-    } else {
-      console.log('empty values');
+
+    if(data.firstName && data.email){
+      const newData = {...data,id: new Date().getTime().toString()};
+      setPeople([...people,newData]);
+      setData({ firstName: '', email: '', age: '' });
     }
-  };
+  }
+
+
   return (
     <>
       <article>
-        <form className='form' onSubmit={handleSubmit}>
+        <form className='form'>
           <div className='form-control'>
             <label htmlFor='firstName'>Name : </label>
             <input
               type='text'
               id='firstName'
               name='firstName'
-              value={firstName}
-              onChange={(e) => setFirstName(e.target.value)}
+              value={data.firstName}
+              onChange={handleChange}
             />
           </div>
           <div className='form-control'>
@@ -45,11 +48,11 @@ const ControlledInputs = () => {
               type='email'
               id='email'
               name='email'
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
+              value={data.email}
+              onChange={handleChange}
             />
           </div>
-          <button type='submit'>add person</button>
+          <button type='submit' onClick={handleSubmit}>add person</button>
         </form>
         {people.map((person, index) => {
           const { id, firstName, email } = person;
