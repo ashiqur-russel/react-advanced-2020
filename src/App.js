@@ -7,7 +7,8 @@ import React from 'react'
 //import Setup from './tutorial/5-useRef/setup/1-useRef-basics'
 //import Setup from './tutorial/6-useReducer/setup'
 //import Watch from '../src/Stopwatch'
-import Setup from './tutorial/7-prop-drilling/setup/1-prop-drilling'
+//import Setup from './tutorial/7-prop-drilling/setup/1-prop-drilling'
+import Setup from './tutorial/8-useContext/setup/1-context-api'
 
 
 
